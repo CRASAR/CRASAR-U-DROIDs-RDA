@@ -1,0 +1,100 @@
+---
+ name: "RandomBaseline_v1"
+ model: "RandomBaseline"
+ task: "BDA"
+ validation_location_strategy: "centered"
+ validation_location_parameters:
+   sample_generator_process_pool_size: 6
+   adjustment_buffer_distance_px: 326
+ validation_presentation_strategy: "indexed"
+ validation_dataset_adaptor_parameters:
+   tile_x: 2048
+   tile_y: 2048
+   mask_x: 2048
+   mask_y: 2048
+   backend: "auto"
+ validation_annotator_parameters:
+   generate_adjusted_samples: True
+   building_intersection_proportion_threshold: 0.0
+ channel_maps:
+  default_label: "None"
+  input_dataset_class_2_idx_map:
+    background: 0
+    no damage: 1
+    minor damage: 2
+    major damage: 3
+    destroyed: 4
+    un-classified: 5
+  output_class_2_idx_map:
+    background: 0
+    no damage: 1
+    minor damage: 2
+    major damage: 3
+    destroyed: 4
+    un-classified: 5
+  model_class_2_color_map:
+    background:
+      red: 0
+      green: 0
+      blue: 0
+      alpha: 0
+    no damage:
+      red: 0
+      green: 255
+      blue: 0
+      alpha: 255
+    minor damage:
+      red: 255
+      green: 255
+      blue: 0
+      alpha: 255
+    major damage:
+      red: 255
+      green: 128
+      blue: 0
+      alpha: 255
+    destroyed:
+      red: 255
+      green: 0
+      blue: 0
+      alpha: 255
+    un-classified:
+      red: 255
+      green: 0
+      blue: 255
+      alpha: 2
+  background_class_idx: 0
+ optimizer_parameters:
+  learning_rate: 0.0005
+ validation_parameters:
+   batch_size: 2
+   validation_monitor: "val_macro_f1"
+   validation_monitor_mode: "max"
+   validation_checkpoint_save_top_k: 3
+   validation_reduce_lr_on_plateau_patience: 3
+   validation_reduce_lr_on_plateau_cooldown: 3
+ input:
+  channels:
+    red: 0
+    green: 1
+    blue: 2
+    mask: 3
+  training_parameters:
+   output_class_weights: 
+    background: 0.000001
+    no damage: 1.95
+    minor damage: 3.193
+    major damage: 9.852
+    destroyed: 23.706
+    un-classified: 35.23
+   tile_x: 2048
+   tile_y: 2048
+   mask_x: 2048
+   mask_y: 2048
+  class_weights:
+    background: 1.0
+    no damage: 1.0
+    minor damage: 1.0
+    major damage: 1.0
+    destroyed: 1.0
+    un-classified: 1.0

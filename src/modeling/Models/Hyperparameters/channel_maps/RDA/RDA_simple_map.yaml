@@ -1,0 +1,40 @@
+default_label: "Road Line"
+input_dataset_class_2_idx_map:
+  Background: 0
+  Road Line: 1
+  Not Able To Determine: 3
+  Partial Obstruction: 2
+  Partial Flooding: 2
+  Partial Road Condition: 2
+  Particulate Partial: 2
+  Total Obstruction: 3
+  Total Flooding: 3
+  Total Destruction: 3
+  Particulate Total: 3
+output_class_2_idx_map:
+  Background: 0
+  Road Line: 1
+  Partial: 2
+  Total: 3
+model_class_2_color_map:
+  Background:
+    red: 0
+    green: 0
+    blue: 0
+    alpha: 0
+  Road Line:
+    red: 0
+    green: 255
+    blue: 0
+    alpha: 255
+  Partial:
+    red: 255
+    green: 255
+    blue: 0
+    alpha: 255
+  Total:
+    red: 255
+    green: 0
+    blue: 0
+    alpha: 255
+background_class_idx: 0

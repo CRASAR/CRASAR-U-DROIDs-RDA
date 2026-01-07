@@ -1,0 +1,48 @@
+
+default_label: "None"
+input_dataset_class_2_idx_map:
+  background: 0
+  no damage: 1
+  minor damage: 2
+  major damage: 3
+  destroyed: 4
+  un-classified: 5
+output_class_2_idx_map:
+  background: 0
+  no damage: 1
+  minor damage: 2
+  major damage: 3
+  destroyed: 4
+  un-classified: 5
+model_class_2_color_map:
+  background:
+    red: 0
+    green: 0
+    blue: 0
+    alpha: 0
+  no damage:
+    red: 0
+    green: 255
+    blue: 0
+    alpha: 255
+  minor damage:
+    red: 255
+    green: 255
+    blue: 0
+    alpha: 255
+  major damage:
+    red: 255
+    green: 128
+    blue: 0
+    alpha: 255
+  destroyed:
+    red: 255
+    green: 0
+    blue: 0
+    alpha: 255
+  un-classified:
+    red: 255
+    green: 0
+    blue: 255
+    alpha: 2
+background_class_idx: 0
