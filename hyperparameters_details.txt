@@ -1,0 +1,18 @@
+All of the hyperparameters used for each of the baseline models can be found in the following files...
+
+/src/modeling/Models/DeepLabV3Plus/hyperparameters/RDA_deeplabv3plus_simple.yaml
+/src/modeling/Models/DeepLabV3Plus/hyperparameters/RDA_deeplabv3plus_full.yaml
+/src/modeling/Models/PSPNet/hyperparameters/RDA_psp_resnet101_simple.yaml
+/src/modeling/Models/PSPNet/hyperparameters/RDA_psp_resnet101_full.yaml
+/src/modeling/Models/Segmenter/hyperparameters/rda_segmenter_scalemae_nopretrained_simple.yaml
+/src/modeling/Models/Segmenter/hyperparameters/rda_segmenter_scalemae_nopretrained_full.yaml
+/src/modeling/Models/Segmenter/hyperparameters/rda_segmenter_scalemae_pretrained_simple.yaml
+/src/modeling/Models/Segmenter/hyperparameters/rda_segmenter_scalemae_pretrained_full.yaml
+/src/modeling/Models/UperNet/hyperparameters/rda_scalemae_nopretrained_simple.yaml
+/src/modeling/Models/UperNet/hyperparameters/rda_scalemae_nopretrained_full.yaml
+/src/modeling/Models/UperNet/hyperparameters/rda_scalemae_pretrained_simple.yaml
+/src/modeling/Models/UperNet/hyperparameters/rda_scalemae_pretrained_full.yaml
+/src/modeling/Models/MaskedUNet/hyperparameters/RDA_UNet_simple_v1.yaml
+/src/modeling/Models/MaskedUNet/hyperparameters/RDA_UNet_full_v1.yaml
+/src/modeling/Models/MaskedUNet/hyperparameters/RDA_UNet_simple_noattention.yaml
+/src/modeling/Models/MaskedUNet/hyperparameters/RDA_UNet_full_noattention.yaml

@@ -1,0 +1,63 @@
+#!/bin/bash
+#SBATCH --job-name=RDA_Baseline_Training
+#SBATCH --output=RDA_Baseline_Training-%j.out
+#SBATCH --error=RDA_Baseline_Training-%j.err
+#SBATCH --partition=general
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=20
+#SBATCH --gres=gpu:1
+#SBATCH --mem=256G
+#SBATCH --time=36:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=<YOUR EMAIL ADDRESS>
+
+##The model to be trained is determined based on the hyperparamters file that is passed to the training script. 
+##Below are the hyperparameters files for each of the baseline models.
+##The random baseline model is not trained and so it is not provided in this script.
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/DeepLabV3Plus/hyperparameters/RDA_deeplabv3plus_simple.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/DeepLabV3Plus/hyperparameters/RDA_deeplabv3plus_full.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/PSPNet/hyperparameters/RDA_psp_resnet101_simple.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/PSPNet/hyperparameters/RDA_psp_resnet101_full.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/Segmenter/hyperparameters/rda_segmenter_scalemae_nopretrained_simple.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/Segmenter/hyperparameters/rda_segmenter_scalemae_nopretrained_full.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/Segmenter/hyperparameters/rda_segmenter_scalemae_pretrained_simple.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/Segmenter/hyperparameters/rda_segmenter_scalemae_pretrained_full.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/UperNet/hyperparameters/rda_scalemae_nopretrained_simple.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/UperNet/hyperparameters/rda_scalemae_nopretrained_full.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/UperNet/hyperparameters/rda_scalemae_pretrained_simple.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/UperNet/hyperparameters/rda_scalemae_pretrained_full.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/MaskedUNet/hyperparameters/RDA_UNet_simple_v1.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/MaskedUNet/hyperparameters/RDA_UNet_full_v1.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/MaskedUNet/hyperparameters/RDA_UNet_simple_noattention.yaml"
+hyperparameter_file="<PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/Models/MaskedUNet/hyperparameters/RDA_UNet_full_noattention.yaml"
+
+accelerator="gpu"
+
+##The validation data used for the training of all baseline models includes data and imagery from the following orthomosaics...
+##1001-Harlem-Heights.geo.tif  1002-Ft-Myers-Beach-LCSO.geo.tif  2018-05-18-X4S-visible-CentralPark.geo.tif  20210831-LA-DIV-01.geo.tif
+##Place the relevant imagery, annotations, and adjustments in the below directory paths.
+val_ortho_path="<PATH_TO_CRASAR_U_DROIDS_IMAGERY>/valid/imagery/UAS"
+val_labels_path="<PATH_TO_DATA_DIRECTORY>/valid/annotations/road_damage_assessment"
+val_adjustments_path="<PATH_TO_DATA_DIRECTORY>/valid/annotations/road_alignment_adjustments"
+val_backend="rasterio"
+
+train_ortho_path="<PATH_TO_CRASAR_U_DROIDS_IMAGERY>/CRASAR-U-DROIDS/train/imagery/UAS"
+train_labels_path="<PATH_TO_DATA_DIRECTORY>/data/train/annotations/road_damage_assessment"
+train_adjustments_path="<PATH_TO_DATA_DIRECTORY>/data/train/annotations/road_alignment_adjustments"
+train_backend="rasterio"
+
+## https://github.com/bair-climate-initiative/scale-mae/releases/download/base-800/scalemae-vitlarge-800.pth
+vit_ckpt_path="<PATH TO THE DIRECTORY WHERE THE SCALEMAE MODEL HAS BEEN DOWNLOADED>"
+ortho_stats_file="<PATH_TO_CRASAR_U_DROIDS>/statistics.csv"
+
+tmp_folder="<PATH_TO_MODEL_OUTPUT_DIRECTORY>/model_outputs"
+
+export NCCL_P2P_DISABLE=1
+export NCCL_IB_DISABLE=1
+
+export PYTHONPATH=<PATH_TO_SOURCE_CODE_DIRECTORY>/src/
+cd
+
+
+python <PATH_TO_SOURCE_CODE_DIRECTORY>/src/modeling/train.py --restart --train_ortho_path "$train_ortho_path" --train_labels_path "$train_labels_path" --train_adjustments_path "$train_adjustments_path" --train_backend "$train_backend" --val_backend "$val_backend" --out_path "$tmp_folder" --accelerator "$accelerator" --val_ortho_path "$val_ortho_path" --val_labels_path "$val_labels_path" --val_adjustments_path "$val_adjustments_path" --hyperparameters_yaml_path "$hyperparameter_file" --ortho_stats_file "$ortho_stats_file"

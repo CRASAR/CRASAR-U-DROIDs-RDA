@@ -1,0 +1,11 @@
+In order to evaluate a model using adjusted or unadjusted road lines during inference. A flag must be set in the hyperparamters file. That flag is as follows:
+
+To pass ADJUSTED road lines to the model during inference set the "generate_adjusted_samples" flag to "True" as shown below. 
+
+validation_annotator_parameters:
+  generate_adjusted_samples: True
+
+To pass UNADJUSTED road lines to the model during inference set the "generate_adjusted_samples" flag to "False" as shown below. 
+
+validation_annotator_parameters:
+  generate_adjusted_samples: False

@@ -1,0 +1,19 @@
+Model Architecure,Target,OS,CPUs,GPU,RAM,Wall Clock Time Limit,Number of Runs Required to Compute Each Reported Result
+UNet w/ Attention,Simple,Windows 10,12,NVIDIA RTX 4090,64GB,36hrs,1
+UNet w/ Attention,Full,Windows 10,12,NVIDIA RTX 4090,64GB,36hrs,1
+UNet w/out Attention,Simple,Windows 10,12,NVIDIA RTX 4090,64GB,36hrs,1
+UNet w/out Attention,Full,Windows 10,12,NVIDIA RTX 4090,64GB,36hrs,1
+DeepLabV3Plus + ResNet101,Simple,Windows 10,12,NVIDIA RTX 4090,64GB,36hrs,1
+DeepLabV3Plus + ResNet101,Full,AlmaLinux 9.5,20,NVIDIA L40s,256GB,36hrs,1
+PSPNet + ResNet101,Simple,Windows 10,12,NVIDIA RTX 4090,64GB,36hrs,1
+PSPNet + ResNet101,Full,AlmaLinux 9.5,20,NVIDIA L40s,256GB,36hrs,1
+Segmenter +  ScaleMAE's ViT(No Pretrained Weights),Simple,AlmaLinux 9.5,20,NVIDIA L40s,256GB,36hrs,1
+Segmenter +  ScaleMAE's ViT(No Pretrained Weights),Full,AlmaLinux 9.5,20,NVIDIA L40s,256GB,36hrs,1
+Segmenter +  ScaleMAE's ViT(Pretrained Weights),Simple,AlmaLinux 9.5,20,NVIDIA L40s,256GB,36hrs,1
+Segmenter +  ScaleMAE's ViT(Pretrained Weights),Full,Windows 11,24,NVIDIA RTX 4090,64GB,36hrs,1
+UperNet + ScaleMAE's ViT(No Pretrained Weights),Simple,AlmaLinux 9.5,20,NVIDIA L40s,256GB,36hrs,1
+UperNet + ScaleMAE's ViT(No Pretrained Weights),Full,AlmaLinux 9.5,20,NVIDIA L40s,256GB,36hrs,1
+UperNet + ScaleMAE's ViT(Pretrained Weights),Simple,Windows 11,24,NVIDIA RTX 4090,64GB,36hrs,1
+UperNet + ScaleMAE's ViT(Pretrained Weights),Full,AlmaLinux 9.5,20,NVIDIA L40s,256GB,36hrs,1
+Random Baseline,Simple,Windows 10,1,None,64GB,36hrs,1
+Random Baseline,Full,Windows 10,1,None,64GB,36hrs,1
