@@ -8,17 +8,17 @@ class Attention_block(nn.Module):
         super().__init__()
         self.W_g = nn.Sequential(
             nn.Conv2d(F_g, F_int, kernel_size=kernel_size, stride=1, padding=0, bias=True),
-            nn.BatchNorm2d(F_int, F_int) #TODO: Parameterize normalization strategy for backwards compatibility
+            nn.BatchNorm2d(F_int) #TODO: Parameterize normalization strategy for backwards compatibility
             )
 
         self.W_x = nn.Sequential(
             nn.Conv2d(F_l, F_int, kernel_size=kernel_size, stride=1, padding=0, bias=True),
-            nn.BatchNorm2d(F_int, F_int) #TODO: Parameterize normalization strategy for backwards compatibility
+            nn.BatchNorm2d(F_int) #TODO: Parameterize normalization strategy for backwards compatibility
         )
 
         self.psi = nn.Sequential(
             nn.Conv2d(F_int, 1, kernel_size=kernel_size, stride=1, padding=0, bias=True),
-            nn.BatchNorm2d(1, 1), #TODO: Parameterize normalization strategy for backwards compatibility
+            nn.BatchNorm2d(1), #TODO: Parameterize normalization strategy for backwards compatibility
             nn.Sigmoid()
         )
 
@@ -40,10 +40,10 @@ class DoubleConv(nn.Module):
         padding = (kernel_size//2)*dilation
         self.double_conv = nn.Sequential(
             nn.Conv2d(in_channels, mid_channels, kernel_size=kernel_size, padding=padding, dilation=dilation, bias=False, padding_mode=padding_mode),
-            nn.BatchNorm2d(mid_channels, mid_channels), #TODO: Parameterize normalization strategy for backwards compatibility
+            nn.BatchNorm2d(mid_channels), #TODO: Parameterize normalization strategy for backwards compatibility
             nn.GELU(),
             nn.Conv2d(mid_channels, out_channels, kernel_size=kernel_size, padding=padding, dilation=dilation, bias=False, padding_mode=padding_mode),
-            nn.BatchNorm2d(out_channels, out_channels), #TODO: Parameterize normalization strategy for backwards compatibility
+            nn.BatchNorm2d(out_channels), #TODO: Parameterize normalization strategy for backwards compatibility
             nn.GELU()
         )
 
