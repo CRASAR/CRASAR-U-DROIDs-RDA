@@ -6,7 +6,7 @@ masking_strategy_parameters:
 train_location_strategy: "grid"
 train_location_parameters:
   sample_generator_process_pool_size: 6
-  adjustment_buffer_distance_px: 326
+  adjustment_buffer_distance_px: 0
 train_presentation_strategy: "weighted"
 train_presentation_strategy_parameters:
   length: 4000
@@ -94,7 +94,7 @@ input:
     red: 0
   sample_generator_parameters:
     label_tolerance: 0.1
-  normalized_inputs: true
+  normalized_inputs: false
   validation_parameters:
     batch_size: 1
     validation_monitor: "val_macro_iou"
