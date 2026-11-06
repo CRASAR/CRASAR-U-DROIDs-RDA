@@ -6,7 +6,7 @@ masking_strategy_parameters:
 train_location_strategy: "grid"
 train_location_parameters:
   sample_generator_process_pool_size: 6
-  adjustment_buffer_distance_px: 0
+  adjustment_buffer_distance_px: 326
 train_presentation_strategy: "weighted"
 train_presentation_strategy_parameters:
   length: 4000
@@ -33,7 +33,7 @@ train_annotator_parameters:
 validation_location_strategy: "grid"
 validation_location_parameters:
   sample_generator_process_pool_size: 6
-  adjustment_buffer_distance_px: 326
+  adjustment_buffer_distance_px: 0
 validation_presentation_strategy: "indexed"
 validation_dataset_adaptor_parameters:
   tile_x: 2048
